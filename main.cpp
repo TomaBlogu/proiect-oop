@@ -1,11 +1,9 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-class tricou
-{
-    string culoare;
-    string material;
+class detalii_articol{
     string brand;
     float pret;
     int an_achizitionare;
@@ -14,24 +12,59 @@ class tricou
 
 public:
     //constructor fara parametrii
-    tricou():culoare("Necunoscuta"),material("Necunoscut"),brand("Necunoscut"),
-    pret(0),an_achizitionare(0),stare(0),id(0){}
+    detalii_articol():brand("Necunoscut"),pret(0),an_achizitionare(0),stare(0),id(0){}
 
     //constructor cu parametrii
-    tricou(const string &culoare, const string &material, const string &brand, float pret, int anAchizitionare, int stare, int id)
-            : culoare(culoare), material(material), brand(brand), pret(pret), an_achizitionare(anAchizitionare), stare(stare)
-            , id(id){}
+    detalii_articol(const string &brand, float pret, int anAchizitionare, int stare, int id) : brand(brand), pret(pret),
+                                                                                               an_achizitionare(
+                                                                                                       anAchizitionare),
+                                                                                               stare(stare), id(id) {}
+
+    const string &getBrand() const {
+        return brand;
+    }
+
+    float getPret() const {
+        return pret;
+    }
+
+    int getAnAchizitionare() const {
+        return an_achizitionare;
+    }
+
+    int getStare() const {
+        return stare;
+    }
+
+    int getId() const {
+        return id;
+    }
+
+};
+
+
+
+class tricou
+{
+    detalii_articol detalii;
+    string culoare;
+    string material;
+
+public:
+    //constructor fara parametrii
+    tricou():detalii(),culoare("Necunoscuta"),material("Necunoscut"){}
+
+    //constructor cu parametrii
+    tricou(const detalii_articol &detalii, const string &culoare, const string &material) : detalii(detalii),
+                                                                                            culoare(culoare),
+                                                                                            material(material) {}
 
     //constructor de copiere
     tricou(const tricou& copie){
+        this->detalii=copie.detalii;
         this->culoare=copie.culoare;
         this->material=copie.material;
-        this->brand=copie.brand;
-        this->pret=copie.pret;
-        this->an_achizitionare=copie.an_achizitionare;
-        this->stare=copie.stare;
-        this->id=copie.id;
-        cout<<"cc tricou \n";
+        //cout<<"cc tricou \n";
     }
 
     //destructor
@@ -41,159 +74,56 @@ public:
 
     //operator =
     tricou& operator=(const tricou& copie){
+        this->detalii=copie.detalii;
         this->culoare=copie.culoare;
         this->material=copie.material;
-        this->brand=copie.brand;
-        this->pret=copie.pret;
-        this->an_achizitionare=copie.an_achizitionare;
-        this->stare=copie.stare;
-        this->id=copie.id;
         cout<<"op= tricou \n";
         return *this;
     }
 
     //stream output detector
     friend ostream &operator<<(ostream &os, const tricou &tricou) {
-        os << "culoare: " << tricou.culoare << " material: " << tricou.material << " brand: " << tricou.brand
-           << " pret: " << tricou.pret << " an_achizitionare: " << tricou.an_achizitionare << " stare: " << tricou.stare
-           << " id: " << tricou.id;
+        os << "brand: " << tricou.detalii.getBrand() << "\npret: "<<tricou.detalii.getPret()
+        <<"\nan_achizitionare: "<<tricou.detalii.getAnAchizitionare()<<"\nstare: "<<tricou.detalii.getStare()
+        <<"\nid: "<<tricou.detalii.getId()<<"\nculoare: " << tricou.culoare << "\nmaterial: " << tricou.material<<"\n";
         return os;
     }
 
-    //functie donare
-    void donare(){
-        if((this->stare<7 && this->an_achizitionare<2015) || this->stare<5)
-            cout<<"De donat \n";
-        else cout<<"De pastrat \n";
+    const detalii_articol &getDetalii() const {
+        return detalii;
+    }
+
+};
+
+
+
+
+class garderoba{
+    vector <tricou> lista_tricouri;
+
+public:
+    //constructor fara parametrii
+    garderoba(const vector<tricou> &listaTricouri) : lista_tricouri(listaTricouri) {}
+
+    //functie adaugare tricou in vector
+    void add_tricou(tricou &tricou) {
+        lista_tricouri.push_back(tricou);
     };
 
-    const string &getCuloare() const {
-        return culoare;
-    }
+    //functie returnare tricoul x
+    tricou tricoul_x(int x){
+        return lista_tricouri[x-1];
+    };
 
-    const string &getMaterial() const {
-        return material;
-    }
-
-    int getId() const {
-        return id;
-    }
-
-    float getPret() const {
-        return pret;
-    }
-
-    void setPret(float pret) {
-        tricou::pret = pret;
+    const vector<tricou> &getListaTricouri() const {
+        return lista_tricouri;
     }
 
 };
 
-class pantaloni{
-    string culoare;
-    string material;
-    string brand;
-    float pret;
-    int an_achizitionare;
-    int stare; //de la 1 la 10
-    int id;
-
-public:
-    //constructor fara parametrii
-    pantaloni():culoare("Necunoscuta"),material("Necunoscut"),brand("Necunoscut"),
-             pret(0),an_achizitionare(0),stare(0),id(0){}
-
-    //constructor cu parametrii
-    pantaloni(const string &culoare, const string &material, const string &brand, float pret, int anAchizitionare,
-              int stare, int id) : culoare(culoare), material(material), brand(brand), pret(pret),
-                                   an_achizitionare(anAchizitionare), stare(stare), id(id) {}
-
-    //stream output detector
-    friend ostream &operator<<(ostream &os, const pantaloni &pantaloni) {
-        os << "culoare: " << pantaloni.culoare << " material: " << pantaloni.material << " brand: " << pantaloni.brand
-           << " pret: " << pantaloni.pret << " an_achizitionare: " << pantaloni.an_achizitionare << " stare: "
-           << pantaloni.stare << " id: " << pantaloni.id;
-        return os;
-    }
-
-    const string &getCuloare() const {
-        return culoare;
-    }
-
-    const string &getMaterial() const {
-        return material;
-    }
-
-    int getId() const {
-        return id;
-    }
-
-    float getPret() const {
-        return pret;
-    }
-
-    void setPret(float pret) {
-        pantaloni::pret = pret;
-    }
-
-};
-
-class incaltaminte{
-    string culoare;
-    string material;
-    string brand;
-    float pret;
-    int an_achizitionare;
-    int stare; //de la 1 la 10
-    int id;
-
-public:
-    //constructor fara parametrii
-    incaltaminte():culoare("Necunoscuta"),material("Necunoscut"),brand("Necunoscut"),
-                pret(0),an_achizitionare(0),stare(0),id(0){}
-
-    //constructor cu parametrii
-    incaltaminte(const string &culoare, const string &material, const string &brand, float pret, int anAchizitionare,
-                 int stare, int id) : culoare(culoare), material(material), brand(brand), pret(pret),
-                                      an_achizitionare(anAchizitionare), stare(stare), id(id) {}
-
-    //stream output detector
-    friend ostream &operator<<(ostream &os, const incaltaminte &incaltaminte) {
-        os << "culoare: " << incaltaminte.culoare << " material: " << incaltaminte.material << " brand: "
-           << incaltaminte.brand << " pret: " << incaltaminte.pret << " an_achizitionare: "
-           << incaltaminte.an_achizitionare << " stare: " << incaltaminte.stare << " id: " << incaltaminte.id;
-        return os;
-    }
-
-    const string &getCuloare() const {
-        return culoare;
-    }
-
-    const string &getMaterial() const {
-        return material;
-    }
-
-    int getId() const {
-        return id;
-    }
-
-    float getPret() const {
-        return pret;
-    }
-
-    void setPret(float pret) {
-        incaltaminte::pret = pret;
-    }
-
-};
-
-class accesorii{
+/*class accesorii{
+    detalii_articol detalii;
     string tip_accesoriu;
-    string brand;
-    float pret;
-    int an_achizitionare;
-    int stare; //de la 1 la 10
-    int id;
 
 public:
     //constructor fara parametrii
@@ -206,62 +136,51 @@ public:
 
     //stream output detector
     friend ostream &operator<<(ostream &os, const accesorii &accesorii) {
-        os << "tip_accesoriu: " << accesorii.tip_accesoriu << " brand: " << accesorii.brand << " pret: "
-           << accesorii.pret << " an_achizitionare: " << accesorii.an_achizitionare << " stare: " << accesorii.stare
-           << " id: " << accesorii.id;
+        os << "detalii: " << accesorii.detalii << " tip_accesoriu: " << accesorii.tip_accesoriu;
         return os;
     }
 
-    const string &getTipAccesoriu() const {
-        return tip_accesoriu;
-    }
-
-    int getId() const {
-        return id;
-    }
-
-    float getPret() const {
-        return pret;
-    }
-
-    void setPret(float pret) {
-        accesorii::pret = pret;
-    }
-
-};
+};*/
 
 class outfit{
     string nume;
     int id;
     tricou t;
-    pantaloni p;
-    incaltaminte i;
-    accesorii a;
 
 public:
     //constructor fara parametrii
-    outfit():nume("Necunoscut"),id(0),t(),p(),i(),a(){}
+    outfit():nume("Necunoscut"),id(0),t(){}
 
     //constructor cu parametrii
-    outfit(const string &nume, int id, const tricou &t, const pantaloni &p, const incaltaminte &i, const accesorii &a)
-            : nume(nume), id(id), t(t), p(p), i(i), a(a) {}
+    outfit(const string &nume, int id, const tricou &t) : nume(nume), id(id), t(t) {}
 
     //stream output detector
     friend ostream &operator<<(ostream &os, const outfit &outfit) {
-        os << "nume: " << outfit.nume << "\n id_outfit: " << outfit.id << "\n id_tricou: " << outfit.t.getId() << "\n id_pantaloni: " << outfit.p.getId() << "\n id_incaltaminte: "
-           << outfit.i.getId() << "\n id_accesorii: " << outfit.a.getId();
+        os << "Outfitul \"" << outfit.nume << "\"\nid: " << outfit.id << "\ntricou: " << outfit.t.getDetalii().getId()<<"\n";
         return os;
     }
 
 };
-
 int main() {
-tricou t1("alb","bumbac","Nike",25,2020,4,1);
-tricou t2("roz","bumbac","HM",30,2021,9,2);
-pantaloni p1("bej","","Koton",80,2020,9,1);
-incaltaminte i1("negru","textil/piele","Converse",120,2021,10,1);
-accesorii a1("inel","HM",30,2020,10,1);
-outfit o1("Facultate toamna 1",1,t2,p1,i1,a1);
-cout<<o1;
+//
+detalii_articol d1("HM",35,2021,8,1);
+detalii_articol d2("Koton",30,2021,9,2);
+//
+tricou t1(d1,"negru","bumbac");
+tricou t2(d2,"bej","bumbac");
+//
+vector <tricou> lista_tricouri;
+garderoba haine(lista_tricouri);
+haine.add_tricou(t1);
+haine.add_tricou(t2);
+//
+outfit o1("Toamna 1",1,t1);
+outfit o2("Toamna 2",2,t2);
+outfit o3("Vara 1",3,t1);
+//
+cout<<o1<<o2<<o3;
+cout<<endl;
+cout<<"Tricoul 1\n"<<haine.tricoul_x(1);
+cout<<"Tricoul 2\n"<<haine.tricoul_x(2);
     return 0;
 }
