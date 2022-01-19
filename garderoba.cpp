@@ -5,6 +5,7 @@
 #include "garderoba.h"
 #include <vector>
 #include <string.h>
+#include "incaltaminte.h"
 
 garderoba::garderoba(const std::vector<tricou> &listaTricouri, const std::vector<incaltaminte> &listaIncaltaminte)
         : lista_tricouri(listaTricouri), lista_incaltaminte(listaIncaltaminte) {}
@@ -29,7 +30,7 @@ const std::vector<incaltaminte> &garderoba::getListIncaltaminte() const {
     return lista_incaltaminte;
 }
 
-tricou garderoba::cautare_tricouri(std::string culoare) {
+void garderoba::cautare_tricouri(std::string culoare) {
     for (tricou i: lista_tricouri)
         if (i.getDetalii().getCuloare() == culoare)
             std::cout << i.getId() << " ";

@@ -6,7 +6,7 @@
 
 outfit::outfit() : nume("Necunoscut"), id(0), tricou_outfit(), incaltaminte_outfit() {}
 
-outfit::outfit(const std::string &nume, int id, const tricou &tricouOutfit, const incaltaminte &incaltaminteOutfit)
+outfit::outfit(const std::string &nume, int id, const tops &tricouOutfit, const incaltaminte &incaltaminteOutfit)
         : nume(nume), id(id), tricou_outfit(tricouOutfit), incaltaminte_outfit(incaltaminteOutfit) {}
 
 std::ostream &operator<<(std::ostream &os, const outfit &outfit) {
@@ -15,7 +15,7 @@ std::ostream &operator<<(std::ostream &os, const outfit &outfit) {
     return os;
 }
 
-bool outfit::verif_compatibilitate(tricou t) {
+bool outfit::verif_compatibilitate(tops t) {
     if (t.getDetalii().getCuloare() == incaltaminte_outfit.getDetalii().getCuloare())
         return true;
     return false;

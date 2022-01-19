@@ -3,6 +3,7 @@
 //
 
 #include "detalii_articol.h"
+#include "exceptii.h"
 #include <iostream>
 
 detalii_articol::detalii_articol() : brand("Necunoscut"), pret(0), an_achizitionare(0), stare(0),
@@ -14,7 +15,10 @@ detalii_articol::detalii_articol(const std::string &brand, float pret, int anAch
                                                                                                     anAchizitionare),
                                                                                             stare(stare),
                                                                                             culoare(culoare),
-                                                                                            material(material) {}
+                                                                                            material(material) {
+    if (stare < 1 || stare > 10)
+        throw eroare_stare();
+}
 
 std::ostream &operator<<(std::ostream &os, const detalii_articol &articol) {
     os << "brand: " << articol.brand << " pret: " << articol.pret << " an_achizitionare: " << articol.an_achizitionare

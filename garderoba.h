@@ -17,8 +17,8 @@ public:
     //constructor fara parametrii
     garderoba(const std::vector<tricou> &listaTricouri, const std::vector<incaltaminte> &listaIncaltaminte);
 
-    //functie adaugare tricou in vector
-    void add_tricou(tricou &tricou);
+    //functie adaugare tops in vector
+    void add_tricou(tricou &tricou);;
 
     //functie adaugare incaltaminte in vector
     void add_incaltaminte(incaltaminte &incaltaminte);;
@@ -30,7 +30,7 @@ public:
 
     const std::vector<incaltaminte> &getListIncaltaminte() const;
 
-    tricou cautare_tricouri(std::string culoare);
+    void cautare_tricouri(std::string culoare);
 
 };
 
