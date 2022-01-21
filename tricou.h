@@ -6,6 +6,7 @@
 #define PROIECTE_TRICOU_H
 
 #include "tops.h"
+#include <memory>
 
 class tricou : public tops {
 

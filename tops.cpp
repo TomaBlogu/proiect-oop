@@ -6,11 +6,10 @@
 
 tops::tops() : detalii(), id(0) {}
 
-tops::tops(const detalii_articol &detalii, int id) : detalii(detalii), id(id) {}
+tops::tops(const detalii_articol &detalii) : detalii(detalii), id(++nr_id) {}
 
-tops::tops(const tops &copie, int id) {
+tops::tops(const tops &copie) : id(++nr_id) {
     this->detalii = copie.detalii;
-    this->id = id;
     //cout<<"cc tops \n";
 }
 
@@ -44,6 +43,7 @@ int tops::getId() const {
     return id;
 }
 
-void tops::setId(int id) {
-    tops::id = id;
+void tops::reducere(float procent) {
+    detalii.setPret(detalii.getPret() * (procent / 100));
 }
+

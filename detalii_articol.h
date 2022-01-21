@@ -28,6 +28,8 @@ public:
 
     float getPret() const;
 
+    void setPret(float pret);
+
     int getAnAchizitionare() const;
 
     int getStare() const;

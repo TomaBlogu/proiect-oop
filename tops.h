@@ -11,8 +11,10 @@
 #include "detalii_articol.h"
 
 class tops {
+protected:
     detalii_articol detalii;
-    int id;
+    static int nr_id;
+    const int id;
 
 public:
     //constructor fara parametrii
@@ -22,7 +24,7 @@ public:
     tops(const detalii_articol &detalii, int id);
 
     //constructor de copiere
-    tops(const tops &copie, int id);
+    tops(const tops &copie);
 
     //destructor
     ~tops();
@@ -37,10 +39,9 @@ public:
 
     int getId() const;
 
-    void setId(int id);
-
     void setDetalii(const detalii_articol &detalii);
 
+    virtual void reducere(float procent);
 };
 
 

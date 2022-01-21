@@ -49,3 +49,7 @@ const std::string &detalii_articol::getCuloare() const {
 const std::string &detalii_articol::getMaterial() const {
     return material;
 }
+
+void detalii_articol::setPret(float pret) {
+    detalii_articol::pret = pret;
+}

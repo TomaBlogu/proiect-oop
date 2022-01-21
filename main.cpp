@@ -33,38 +33,36 @@ public:
 
 int main() {
     try {
-//
-        detalii_articol d_tricou1("HM", 35, 2021, 8, "negru", "bumbac");
-        detalii_articol d_tricou2("Koton", 30, 2021, 9, "alb", "bumbac");
-        detalii_articol d_incaltaminte1("Converse", 200, 2021, 9, "negru", "textil");
-//
-        tricou tricou_1(d_tricou1, 1);
-        tricou tricou_2(tricou_1, 2);
-        incaltaminte adidasi_converse(d_incaltaminte1, 1);
-//
-        vector<tricou> lista_tricouri;
-        vector<incaltaminte> lista_incaltaminte;
-        garderoba garderoba(lista_tricouri, lista_incaltaminte);
-        garderoba.add_tricou(tricou_1);
-        garderoba.add_tricou(tricou_2);
-        garderoba.add_incaltaminte(adidasi_converse);
-//
+        tricou tricou_1 = factory::tricou_Hm_basic();
+        tricou tricou_2 = factory::tricou_Koton_basic();
+        tricou::informatii_spalare(tricou_1);
+        incaltaminte adidasi_converse = factory::incaltaminte_basic();
         outfit o1("Toamna 1", 1, tricou_1, adidasi_converse);
+//
+
+//
+        std::vector<std::shared_ptr<tricou>> lista_tricouri;
+        std::vector<std::shared_ptr<incaltaminte>> lista_incaltaminte;
+        garderoba garderoba(lista_tricouri, lista_incaltaminte);
+        garderoba.add_tricou(std::make_shared<tricou>(tricou_1));
+        garderoba.add_tricou(std::make_shared<tricou>(tricou_2));
+        garderoba.add_incaltaminte(std::make_shared<incaltaminte>(adidasi_converse));
+//
+        garderoba.cautare_tricouri("negru");
 //verificare cc
-        cout << "Tricoul 1\n" << tricou_1 << "Tricoul 2\n" << tricou_2;
-        tricou_2.setDetalii(d_tricou2);
-        cout << "Tricoul 1\n" << tricou_1 << "Tricoul 2\n" << tricou_2;
-        cout << "------------\n";
-//functii
-        garderoba.cautare_tricouri("alb");
+        std::cout << "Tricoul 1\n" << tricou_1 << "Tricoul 2\n" << tricou_2;
+        tricou_1.reducere(25);
+        //tricou_2.setDetalii(d_tricou2);
+        std::cout << "Tricoul 1\n" << tricou_1 << "Tricoul 2\n" << tricou_2;
+        std::cout << "------------\n";
+//
         if (o1.verif_compatibilitate(tricou_2))
             cout << "Compatibil";
         else cout << "Incompatibil";
     } catch (eroare_stare &eroare) {
         std::cout << eroare.what();
     }
+
     return 0;
 
 }
-
-//Outfit-ul ar trebui să primească doar items din garderoba adaugă o funcție în clasa garderobă pt asta
