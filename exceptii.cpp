@@ -3,6 +3,7 @@
 //
 
 #include "exceptii.h"
+#include <string>
 
 eroare_articol::eroare_articol(const std::string &arg) : runtime_error("Eroare articol:" + arg) {}
 
