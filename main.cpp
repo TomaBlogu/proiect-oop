@@ -7,6 +7,7 @@
 #include "incaltaminte.h"
 #include "tricou.h"
 #include "exceptii.h"
+#include "factory.h"
 
 using namespace std;
 
