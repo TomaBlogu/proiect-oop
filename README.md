@@ -41,17 +41,17 @@
 #### Cerințe
 - [x] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
 - [x] moșteniri
-  - [ ] funcții virtuale (pure)
-  - [ ] apelarea constructorului din clasa de bază 
-  - [ ] smart pointers / pointeri normali și verificat să nu fie memory leaks
+  - [x] funcții virtuale (pure)
+  - [x] apelarea constructorului din clasa de bază 
+  - [x] smart pointers / pointeri normali și verificat să nu fie memory leaks
 - [x] excepții
   - [x] predefinite
-  - [ ] ierarhie proprie (cu baza `std::exception` sau derivată din `std::exception`)
+  - [x] ierarhie proprie (cu baza `std::exception` sau derivată din `std::exception`)
   - [x] utilizare cu sens: de exemplu, `throw` în constructor, `try`/`catch` în `main`
-- [ ] funcții și atribute `static`
-- [ ] STL
+- [x] funcții și atribute `static`
+- [x] STL
 - [x] cât mai multe `const`
-- [ ] la fel ca mai sus, apelarea tuturor funcțiilor publice din `main`
+- [x] la fel ca mai sus, apelarea tuturor funcțiilor publice din `main`
 - [ ] încă un tag de `git`: de exemplu `v0.2`
 
 ## Tema 3
