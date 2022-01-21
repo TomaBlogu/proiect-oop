@@ -4,7 +4,9 @@
 
 #include "tops.h"
 
-tops::tops() : detalii(), id(0) {}
+int tops::nr_id = 0;
+
+tops::tops() : id(++nr_id) {}
 
 tops::tops(const detalii_articol &detalii) : detalii(detalii), id(++nr_id) {}
 

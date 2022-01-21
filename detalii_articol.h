@@ -9,6 +9,7 @@
 #include <ostream>
 
 class detalii_articol {
+
     std::string brand;
     float pret;
     int an_achizitionare;

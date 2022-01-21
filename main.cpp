@@ -9,8 +9,6 @@
 #include "exceptii.h"
 #include "factory.h"
 
-using namespace std;
-
 /*class accesorii{
     detalii_articol detalii;
     string tip_accesoriu;
@@ -58,8 +56,9 @@ int main() {
         std::cout << "------------\n";
 //
         if (o1.verif_compatibilitate(tricou_2))
-            cout << "Compatibil";
-        else cout << "Incompatibil";
+            std::cout << "Compatibil";
+        else std::cout << "Incompatibil";
+//
     } catch (eroare_stare &eroare) {
         std::cout << eroare.what();
     }

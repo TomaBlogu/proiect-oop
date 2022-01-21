@@ -8,12 +8,20 @@
 #include "tops.h"
 #include <memory>
 
-class tricou : public tops {
+class tricou : virtual public tops {
 
 public:
-    tricou(const detalii_articol &detalii, int id, int test);
+    explicit tricou(detalii_articol detalii);
 
-    tricou(const tricou &copie, int id);
+    tricou(const tricou &copie);
+
+    virtual ~tricou() override = default;
+
+    static void informatii_spalare(tricou t);
+
+    virtual std::shared_ptr<tricou> clone() const;
+
+    void reducere(float procent) override;
 
 };
 #endif //PROIECTE_TRICOU_H

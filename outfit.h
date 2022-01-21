@@ -12,22 +12,22 @@
 
 class outfit {
     std::string nume;
-    int id;
+    int id{};
     tops tricou_outfit;
     incaltaminte incaltaminte_outfit;
 
 public:
     //constructor fara parametrii
-    outfit();
+    outfit() = default;
 
     //constructor cu parametrii
-    outfit(const std::string &nume, int id, const tops &tricouOutfit, const incaltaminte &incaltaminteOutfit);
+    outfit(std::string nume, int id, const tops &tricouOutfit, incaltaminte incaltaminteOutfit);
 
     //stream output detector
     friend std::ostream &operator<<(std::ostream &os, const outfit &outfit);
 
     //functie verificare compatibilitate
-    bool verif_compatibilitate(tops t);
+    bool verif_compatibilitate(const tops &t) const;
 
 };
 

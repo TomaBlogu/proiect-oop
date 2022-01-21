@@ -21,13 +21,13 @@ public:
     tops();
 
     //constructor cu parametrii
-    tops(const detalii_articol &detalii, int id);
+    explicit tops(const detalii_articol &detalii);
 
     //constructor de copiere
     tops(const tops &copie);
 
     //destructor
-    ~tops();
+    virtual ~tops();
 
     //operator =
     tops &operator=(const tops &copie);

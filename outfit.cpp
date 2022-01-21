@@ -4,10 +4,11 @@
 
 #include "outfit.h"
 
-outfit::outfit() : nume("Necunoscut"), id(0), tricou_outfit(), incaltaminte_outfit() {}
+#include <utility>
 
-outfit::outfit(const std::string &nume, int id, const tops &tricouOutfit, const incaltaminte &incaltaminteOutfit)
-        : nume(nume), id(id), tricou_outfit(tricouOutfit), incaltaminte_outfit(incaltaminteOutfit) {}
+outfit::outfit(std::string nume, int id, const tops &tricouOutfit, incaltaminte incaltaminteOutfit)
+        : nume(std::move(nume)), id(id), tricou_outfit(tricouOutfit),
+          incaltaminte_outfit(std::move(incaltaminteOutfit)) {}
 
 std::ostream &operator<<(std::ostream &os, const outfit &outfit) {
     os << "nume: " << outfit.nume << " \nid: " << outfit.id << " \nid_tricou: " << outfit.tricou_outfit.getId()
@@ -15,7 +16,7 @@ std::ostream &operator<<(std::ostream &os, const outfit &outfit) {
     return os;
 }
 
-bool outfit::verif_compatibilitate(tops t) {
+bool outfit::verif_compatibilitate(const tops &t) const {
     if (t.getDetalii().getCuloare() == incaltaminte_outfit.getDetalii().getCuloare())
         return true;
     return false;

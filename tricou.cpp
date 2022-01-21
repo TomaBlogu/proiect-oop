@@ -4,9 +4,9 @@
 
 #include "tricou.h"
 
-tricou::tricou(const detalii_articol &detalii, int id) : tops(detalii, id) {};
+tricou::tricou(detalii_articol detalii) : tops(detalii) {};
 
-tricou::tricou(const tricou &copie, int id) {
+tricou::tricou(const tricou &copie) : tops() {
     this->setDetalii(copie.getDetalii());
     //cout<<"cc tops \n";
 }
