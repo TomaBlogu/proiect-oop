@@ -41,9 +41,9 @@
 #### Cerințe
 - [x] separarea codului din clase în `.h` (sau `.hpp`) și `.cpp`
 - [x] moșteniri
-  - [ ] funcții virtuale (pure)
+  - [x] funcții virtuale (pure)
   - [x] apelarea constructorului din clasa de bază 
-  - [ ] smart pointers / pointeri normali și verificat să nu fie memory leaks
+  - [x] smart pointers / pointeri normali și verificat să nu fie memory leaks
 - [x] excepții
   - [x] predefinite
   - [x] ierarhie proprie (cu baza `std::exception` sau derivată din `std::exception`)
