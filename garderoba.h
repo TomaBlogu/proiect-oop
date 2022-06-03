@@ -13,7 +13,13 @@ class garderoba {
     std::vector<std::shared_ptr<tricou>> lista_tricouri;
     std::vector<std::shared_ptr<incaltaminte>> lista_incaltaminte;
 
+    static garderoba *garderobaV;
+
 public:
+
+    static garderoba &instance(const std::vector<std::shared_ptr<tricou>> &listaTricouri,
+                               const std::vector<std::shared_ptr<incaltaminte>> &listaIncaltaminte);
+
     //constructor fara parametrii
     garderoba(const std::vector<std::shared_ptr<tricou>> &listaTricouri,
               const std::vector<std::shared_ptr<incaltaminte>> &listaIncaltaminte);

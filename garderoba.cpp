@@ -7,6 +7,15 @@
 #include <string.h>
 #include "incaltaminte.h"
 
+garderoba *garderoba::garderobaV = nullptr;
+
+garderoba &garderoba::instance(const std::vector<std::shared_ptr<tricou>> &listaTricouri,
+                               const std::vector<std::shared_ptr<incaltaminte>> &listaIncaltaminte) {
+    if (garderobaV == nullptr)
+        garderobaV = new garderoba(listaTricouri, listaIncaltaminte);
+    return *garderobaV;
+}
+
 garderoba::garderoba(const std::vector<std::shared_ptr<tricou>> &listaTricouri,
                      const std::vector<std::shared_ptr<incaltaminte>> &listaIncaltaminte) : lista_tricouri(
         listaTricouri), lista_incaltaminte(listaIncaltaminte) {}

@@ -18,6 +18,9 @@ detalii_articol::detalii_articol(const std::string &brand, float pret, int anAch
                                                                                             material(material) {
     if (stare < 1 || stare > 10)
         throw eroare_stare();
+
+    if (pret < 0)
+        throw eroare_articol("Pretul e negativ");
 }
 
 std::ostream &operator<<(std::ostream &os, const detalii_articol &articol) {

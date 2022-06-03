@@ -7,6 +7,7 @@
 
 #include "tricou.h"
 #include "incaltaminte.h"
+#include "pulover.h"
 
 class factory {
 public:
@@ -23,6 +24,11 @@ public:
     static incaltaminte incaltaminte_basic() {
         detalii_articol d_incaltaminte1("Converse", 200, 2021, 9, "negru", "textil");
         return incaltaminte(d_incaltaminte1, 1);
+    }
+
+    static pulover pulover_basic() {
+        detalii_articol d_pulover1("Koton", 100, 2022, 10, "bej", "bumbac");
+        return pulover(d_pulover1);
     }
 };
 

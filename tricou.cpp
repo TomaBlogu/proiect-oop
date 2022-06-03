@@ -23,6 +23,6 @@ std::shared_ptr<tricou> tricou::clone() const {
 }
 
 void tricou::reducere(float procent) {
-    detalii.setPret(detalii.getPret() * (procent * 2 / 100)); //reducerea este dubla la tricouri
+    detalii.setPret(detalii.getPret() - detalii.getPret() * (procent / 100));
 }
 
